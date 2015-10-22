@@ -1,0 +1,33 @@
+{
+  "name": "formation-js",
+  "version": "1.0.0",
+  "description": "Repository de la formation JS by Franck & Jérôme",
+  "main": "app/api/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rehia/formation-js.git"
+  },
+  "keywords": [
+    "formation",
+    "js"
+  ],
+  "author": "Jérôme Avoustin <jerome@rehia.fr>",
+  "contributors": [{
+    "name": "Franck Ernewein",
+    "email": "franck.ernewein@tweetping.net"
+  }, {
+    "name": "Jérôme Avoustin",
+    "email": "jerome@rehia.fr"
+  }],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rehia/formation-js/issues"
+  },
+  "homepage": "https://github.com/rehia/formation-js#readme"
+}
