@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formation JS</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="/square.js"></script>
+  <script src="/grid.js"></script>
+</head>
+<body>
+  <div id="one-square"></div>
+  <script>
+    var first_square = new Square(document.getElementById('one-square')); 
+  </script>
+
+  <hr>
+  
+  <div id="grid"></div>
+  <script>
+    var grid = new Grid(4, 4, document.getElementById('grid')); 
+  </script>
+  
+</body>
+</html>
