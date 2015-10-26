@@ -5,3 +5,8 @@
 * JS est compilé (JIT) et non interprété
 * Exemple avec déclaration de variables
 * 
+
+## Le Document Object Model (DOM)
+* Accès aux éléments et attributs
+* Modification de la page : ajout et suppression de nœuds
+* Accès aux propriétés de style et à la classe CSS
