@@ -38,10 +38,13 @@
   </script>
 
   <hr>
-
+  <h2>Stock</h2>
   <div id="stock" class="stock"></div>
   <script>
     var stock = new Stock(document.getElementById('stock')); 
+    stock.add(new Carrot());
+    stock.add(new Salad());
+    stock.add(new Carrot());
     stock.catchVegetable(grid);
   </script>
   
