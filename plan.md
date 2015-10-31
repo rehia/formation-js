@@ -10,3 +10,6 @@
 * Accès aux éléments et attributs
 * Modification de la page : ajout et suppression de nœuds
 * Accès aux propriétés de style et à la classe CSS
+* Gestion des événements
+  * Evenement Natif (MouseEvent, TouchEvent ...)
+  * CustomEvent
