@@ -1,15 +1,6 @@
 /* global Corn, Carrot, Salad */
 
-var VEGETABLES = [{
-  name: 'corn',
-  cstr: Corn
-}, {
-  name: 'salad',
-  cstr: Salad
-}, {
-  name: 'carrot',
-  cstr: Carrot
-}];
+var VEGETABLES = [Salad, Corn, Carrot];
 
 //Static popup
 var popup = (function() {
@@ -17,13 +8,13 @@ var popup = (function() {
   var element = document.createElement('div');
   element.className = 'popup';
 
-  VEGETABLES.forEach(function(vegetable) {
+  VEGETABLES.forEach(function(Vegetable) {
     var img = new Image();
-    img.src = '/img/' + vegetable.name + '.png';
+    img.src = '/img/' + Vegetable.prototype.TYPE + '.png';
     element.appendChild(img);
     img.onclick = function() {
       if (currentSquare) {
-        currentSquare.put(new vegetable.cstr());
+        currentSquare.put(new Vegetable());
       }
     };
   });
@@ -76,6 +67,10 @@ function Square(content) {
       popup.openOn(this);
     }
   }.bind(this);
+
+  this.domElement.addEventListener('vegetableReady', function(){
+    this.clear();
+  }.bind(this));
 }
 
 Square.prototype.SIZE = 70;
@@ -95,6 +90,11 @@ Square.prototype.put = function(vegetable) {
   this.vegetable = vegetable;
   vegetable.domElement.style.left = ((this.SIZE - vegetable.WIDTH) / 2) + 'px';
   vegetable.domElement.style.bottom = ((this.SIZE - vegetable.HEIGHT) / 2) + 'px';
+};
+
+Square.prototype.clear = function() {
+  this.vegetable = null;  
+  this.domElement.innerHTML = '';
 };
 
 Square.prototype.focus = function() {

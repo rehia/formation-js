@@ -10,6 +10,7 @@
   <script src="/corn.js"></script>
   <script src="/square.js"></script>
   <script src="/grid.js"></script>
+  <script src="/stock.js"></script>
 </head>
 <body>
   <div id="one-square"></div>
@@ -34,6 +35,14 @@
     field2.put(new Salad());
     var field3 = new Square(document.getElementById('vegetables')); 
     field3.put(new Corn());
+  </script>
+
+  <hr>
+
+  <div id="stock" class="stock"></div>
+  <script>
+    var stock = new Stock(document.getElementById('stock')); 
+    stock.catchVegetable(grid);
   </script>
   
 </body>
