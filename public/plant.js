@@ -21,7 +21,6 @@ Plant.prototype.grow = function() {
 Plant.prototype.setGrowingState = function(state) {
   this._growState = state;
   var scale = 0.5 + 0.5 * state / this.MAX_GROW_STATE;
-  console.log(scale);
   this.domElement.style.transform = 'scale(' + scale + ')';
 };
 
