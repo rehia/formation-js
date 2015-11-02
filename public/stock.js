@@ -23,6 +23,11 @@ Stock.prototype.add = function(vegetable) {
   this.render();
 };
 
+Stock.prototype.set = function(values){
+  this.count = values;
+  this.render();
+};
+
 Stock.prototype.render = function() {
   this.tbodyElement.innerHTML = '';
   var types = Object.keys(this.count);

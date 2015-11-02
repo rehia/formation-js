@@ -13,6 +13,24 @@
   <script src="/stock.js"></script>
 </head>
 <body>
+
+  <div id="populate"></div>
+  <script>
+    var popgrid = new Grid(4, 4, document.getElementById('populate')); 
+    popgrid.populate({
+      '0-0': {
+        type: 'carrot',
+        step: 2
+      },
+      '1-3': {
+        type: 'salad',
+        step: 2
+      }
+    });
+  </script>
+  
+  <hr>
+
   <div id="one-square"></div>
   <script>
     var first_square = new Square(document.getElementById('one-square')); 
@@ -47,6 +65,9 @@
     stock.add(new Carrot());
     stock.catchVegetable(grid);
   </script>
+
+
+
   
 </body>
 </html>
