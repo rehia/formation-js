@@ -1,4 +1,4 @@
-/* global Square */
+/* global Square, Salad, Carrot, Corn */
 function Grid(width, height, content) {
   this.domElement = document.createElement('div');
   this.domElement.className = 'grid';
