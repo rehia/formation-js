@@ -34,6 +34,9 @@
   },
   "homepage": "https://github.com/rehia/formation-js#readme",
   "dependencies": {
-    "restify": "^4.0.3"
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3",
+    "restify": "^4.0.3",
+    "sinon": "^1.17.2"
   }
 }
