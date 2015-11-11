@@ -14,7 +14,7 @@ function Plant() {
 
 Plant.prototype.getImagePath = function(){
   return '/img/' + this.TYPE + '.png';
-}
+};
 
 Plant.prototype.grow = function(e) {
   if(e){
@@ -27,7 +27,7 @@ Plant.prototype.grow = function(e) {
       detail: {
         vegetable: this
       },
-      bubbles: true,
+      bubbles: true
     }));
   }
 };

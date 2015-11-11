@@ -4,6 +4,7 @@ var VEGETABLES = [Salad, Corn, Carrot];
 
 //Static popup
 var popup = (function() {
+
   var currentSquare = null;
   var element = document.createElement('div');
   element.className = 'popup';
