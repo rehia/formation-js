@@ -47,3 +47,23 @@ Grid.prototype.populate = function(data) {
     square.vegetable.setGrowingState(item.step);
   }.bind(this));
 };
+
+
+Grid.prototype.toJSON = function() {
+  var data = {};
+  for (var x = 0; x < this.width; x++) {
+    for (var y = 0; y < this.width; y++) {
+      var vegetable = this.matrix[x][y].vegetable;
+      var square = {
+        type: null,
+        state: 0
+      };
+      if (vegetable) {
+        square.type = vegetable.TYPE;
+        square.type = vegetable._growState;
+      }
+      data[x + '-' + y] = square;
+    }
+  }
+  return JSON.stringify(data);
+};
