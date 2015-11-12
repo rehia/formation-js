@@ -17,7 +17,6 @@ Fields.prototype.updateField = function updateField(id, state) {
     throw new FieldDoesNotExistError(id);
   }
 
-  console.log('updating field');
   this[id] = state;
 };
 
