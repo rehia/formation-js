@@ -12,6 +12,7 @@
   <script src="js/square.js"></script>
   <script src="js/grid.js"></script>
   <script src="js/stock.js"></script>
+  <script src="js/save.js"></script>
 </head>
 <body>
 
@@ -21,11 +22,11 @@
     popgrid.populate({
       '0-0': {
         type: 'carrot',
-        step: 2
+        state: 2
       },
       '1-3': {
         type: 'salad',
-        step: 2
+        state: 2
       }
     });
   </script>
@@ -67,7 +68,26 @@
     stock.catchVegetable(grid);
   </script>
 
+  <hr>
+  <h2>Save</h2>
+  <button onclick="saveToServer(grid.toJSON())">Save</button>
 
+  <hr>
+  <h2>Load</h2>
+  <form onsubmit="loadFromServer(this.idValue.value, grid.populate.bind(grid)); return false;">
+    <fieldset>
+      <input type="text" name="idValue" placeholder="ID (ex: 61529ff)">
+      <input type="submit" value="Load">
+    </fieldset>
+  </form>
+
+  <h2>Update</h2>
+  <form onsubmit="saveToServer(grid.toJSON(), this.idValue.value)">
+    <fieldset>
+      <input type="text" name="idValue" placeholder="ID (ex: 61529ff)">
+      <input type="submit" value="Load">
+    </fieldset>
+  </form>
 
   
 </body>
