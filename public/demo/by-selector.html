@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="bateau">
+    <div class="matelot">Max</div>
+    <div class="matelot">Brian</div>
+    <div class="matelot">John</div>
+    <div class="capitaine">Jack</div>
+  </div>  
+  <div class="mer">
+    <div class="matelot">Mike</div>
+  </div>
+  <script>
+    console.log(document.querySelectorAll('.matelot').length);
+    console.log(document.querySelectorAll('#bateau .matelot').length);
+    console.log(document.querySelectorAll('.mer .matelot').length);
+    console.log(document.querySelector('.matelot').innerHTML);
+  </script>
+</body>
+</html>

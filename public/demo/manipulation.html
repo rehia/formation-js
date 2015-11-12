@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="gotham-city">
+    <div id="citoyens">Citoyens de Gotham</div>
+    <div id="joker">The Joker</div>
+  </div>
+  <script>
+    var batman = document.createElement('div'); 
+    batman.appendChild(document.createTextNode('Batman'));
+    document.getElementById('gotham-city').appendChild(batman);
+    document.getElementById('joker').remove();
+  </script>
+</body>
+</html>

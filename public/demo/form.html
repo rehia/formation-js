@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+   <form id="quizz">
+      <input name="question01" 
+             type="text" 
+             value="age du capitaine?">
+      <input type="submit">
+   </form>
+   <script>
+     var quizz = document.getElementById('quizz');
+     var input = quizz.question01
+     var question = input.value;
+     input.value = window.prompt(question);
+   </script>
+</body>
+</html>
