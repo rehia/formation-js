@@ -3,8 +3,20 @@
 ## Scopes
 * Scope = function (registre de déclaration)
 * Principes du compilateurs JS (construction des registres de déclarations dans chaque scope)
-* JS est compilé (JIT) et non interprété
-* Exemple avec déclaration de variables
+  * JS est compilé (JIT) et non interprété
+  * Hoisting
+* Exemple
+  * de déclaration de variables (expliquer le fonctionnement de la déclaration)
+  * d'exécution (expliquer le fonctionnement)
+* Function declaration vs Function expression
+* Lexical scope
+  * Eval modifie le scope lexical : ne pas utiliser
+* IIFE pattern
+* Closure
+* Module pattern (classical)
+* Dynamic Scope : this
+  * 4 règles de binding (default, implicit, explicit, new)
+* Prototype
 
 ## Le Document Object Model (DOM)
 * Accès aux éléments et attributs
