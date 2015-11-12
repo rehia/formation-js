@@ -16,6 +16,7 @@ RestifyServer.prototype.setUp = function setUp() {
 
   server.use(restify.bodyParser());
   server.use(restify.queryParser());
+  server.use(restify.CORS());
 
   server.get('/fields/:id', function (request, response, next) {
     try {
