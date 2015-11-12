@@ -18,9 +18,9 @@ var ___ = 'probably wrong answer';
 describe('JS Functions', function () {
 
   it('function expressions vs function declarations', function () {
-    function isNimble() { return false; }
-    var canFly = function () { return false; };
-    this.isDeadly = function () { return false; };
+    function isNimble() { return ___; }
+    var canFly = function () { return ___; };
+    this.isDeadly = function () { return ___; };
 
     assert.isTrue(isNimble(), 'isNimble should be callable');
     assert.isTrue(canFly(), 'canFly as well');
@@ -28,18 +28,20 @@ describe('JS Functions', function () {
   });
 
   it('a function can be declared after being called, but not function expressions', function () {
+    var canFly;
+
     assert.isTrue(isNimble(), 'isNimble can be called before being declared');
     assert.isTrue(canFly(), 'but not canFly');
     assert.isTrue(this.isDeadly(), 'nor isDeadly');
 
     function isNimble() { return ___; }
-    var canFly = function () { return true; };
-    this.isDeadly = function () { return true; };
+    canFly = function () { return true; }; // what can you do with this line to make the test pass ?
+    this.isDeadly = function () { return true; }; // what can you do with this line to make the test pass ?
   });
 
-  it('a function can be refered within its self using its name', function () {
-    function yell(n){
-      return n > 0 ? yell(n-1) + "a" : "hiy";
+  it('a function can be referred within its self using its name', function () {
+    function yell(n) {
+      return n > 0 ? ___(n-1) + "a" : "hiy";
     }
     assert.equal(yell(4), ___, "Calling the function by itself comes naturally." );
   });
@@ -55,25 +57,24 @@ describe('JS Functions', function () {
   it('function can be used by their name as an object property', function () {
     var ninja = {
       yell: function(n){
-        return n > 0 ? ninja.yell(n-1) + "a" : "hiy";
+        return n > 0 ? ninja.___(n-1) + "a" : "hiy";
       }
     };
-    assert( ninja.yell(5) == ___, "A single object isn't too bad, either." );
+    assert.equal(ninja.yell(5), ___, "A single object isn't too bad, either.");
   });
 
   it('a function should always have a proper name', function () {
     var ninja = {
       yell: function ___(n){
-        return n > 0 ? ninja.yell(n-1) + "a" : "hiy";
+        return n > 0 ? yell(n-1) + "a" : "hiy";
       }
     };
 
     var samurai = { yell: ninja.yell };
     var ninja = null;
 
-
     assert.doesNotThrow(function () {
-      samurai.yell(4);
+      samurai.___(4);
     }, Error, "Uh, this isn't good! Where'd ninja.yell go?");
   });
 
