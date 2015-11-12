@@ -9,6 +9,7 @@ function Fields() {}
 Fields.prototype.newField = function newField(state) {
   var id = this._newId();
   this[id] = state;
+  console.log('new field created with id #' + id);
   return id;
 };
 
@@ -16,8 +17,8 @@ Fields.prototype.updateField = function updateField(id, state) {
   if (!this[id]) {
     throw new FieldDoesNotExistError(id);
   }
-
   this[id] = state;
+  console.log('field with id #' + id + ' updated');
 };
 
 Fields.prototype.getField = function getField(id) {
