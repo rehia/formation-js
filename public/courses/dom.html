@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Course</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="js/plant.js"></script>
+  <script src="js/carrot.js"></script>
+  <script src="js/salad.js"></script>
+  <script src="js/corn.js"></script>
+  <script src="js/popup.js"></script>
+  <script src="js/square.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/stock.js"></script>
+  <script>
+    function create_square(){
+      var square = new Square();
+      square.attachTo(document.body);
+    }
+
+    function create_squares_with_vegetable(){
+      var square = new Square();
+      square.attachTo(document.body);
+      square.put(new Carrot());
+
+      var square2 = new Square();
+      square2.attachTo(document.body);
+      square2.put(new Salad());
+
+      var square3 = new Square();
+      square3.attachTo(document.body);
+      square3.put(new Salad());
+    }
+
+    function create_grid(){
+      var field = new Grid(4, 5, document.getElementById('field'));
+      field.matrix[2][2].put(salad);
+      var stock = new Stock(document.getElementById('stock'));
+      stock.catchVegetable(grid);
+    }
+  </script>
+</head>
+<body onload="create_square()">
+  <div id="field"></div>
+  <div id="stock"></div>
+</body>
+</html>
