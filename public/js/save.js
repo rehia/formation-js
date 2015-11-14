@@ -2,7 +2,7 @@ var HOST = 'http://localhost:8082/';
 
 function saveToServer(data, id) {
   var string = JSON.stringify({
-    state: JSON.parse(data)
+    state: data
   });
 
   var xhr = new XMLHttpRequest();
@@ -15,7 +15,7 @@ function saveToServer(data, id) {
   var method = id ? 'PUT' : 'POST';
   var url = HOST + 'fields';
   if (id) {
-    url += '/id';
+    url += '/' + id;
   }
   xhr.open(method, url, true);
   xhr.setRequestHeader('Content-type', 'application/json');

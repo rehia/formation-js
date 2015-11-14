@@ -52,7 +52,7 @@ Grid.prototype.populate = function(data) {
 };
 
 
-Grid.prototype.toJSON = function() {
+Grid.prototype.export = function() {
   var data = {};
   for (var x = 0; x < this.width; x++) {
     for (var y = 0; y < this.width; y++) {
@@ -68,5 +68,5 @@ Grid.prototype.toJSON = function() {
       data[x + '-' + y] = square;
     }
   }
-  return JSON.stringify(data);
+  return data;
 };
