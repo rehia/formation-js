@@ -1,3 +1,5 @@
+var HOST = 'http://localhost:8082/';
+
 function saveToServer(data, id) {
   var string = JSON.stringify({
     state: JSON.parse(data)
@@ -11,7 +13,7 @@ function saveToServer(data, id) {
   };
 
   var method = id ? 'PUT' : 'POST';
-  var url = 'http://192.168.1.19:8082/fields';
+  var url = HOST + 'fields';
   if (id) {
     url += '/id';
   }
@@ -28,7 +30,7 @@ function loadFromServer(id, callback){
     }
   };
 
-  var url = 'http://localhost:8082/fields/' + id;
+  var url = HOST + 'fields/' + id;
   xhr.open('GET', url, true);
   xhr.send();
 }
