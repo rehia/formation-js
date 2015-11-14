@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Course</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="js/plant.js"></script>
+  <script src="js/carrot.js"></script>
+  <script src="js/salad.js"></script>
+  <script src="js/corn.js"></script>
+  <script src="js/popup.js"></script>
+  <script src="js/square.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/stock.js"></script>
+  <script>
+    function init(){
+      var field = new Grid(4, 5, document.getElementById('field'));
+      var stock = new Stock(document.getElementById('stock'));
+      stock.catchVegetable(field);
+    }
+
+    var API_URL = 'http://localhost:8082/fields';
+
+    function save(e){
+      //TODO: prevent page reloading
+
+      var dataToSend = {
+        state: grid.export()
+      };
+      //TODO: serialize dataToSend
+
+      //TODO: use XMLHttpRequest to save on the server
+      //create new XMLHttpRequest
+      //listen on ready state change and id in <select>
+      //open POST request 
+      //set header (json)
+      //send data
+
+    }
+
+    function load(){
+
+      //TODO: get the id from <select>
+
+      //TODO: build url with id 
+
+      //TODO: use XMLHttpRequest to load data
+      //create new XMLHttpRequest
+      //listen on ready state change to populate grid
+      //open GET request
+      //send (...nothing);
+
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div id="field"></div>
+  <div id="stock"></div>
+
+  <form onsubmit="save" id="save-form">
+    <fieldset>
+      <legend>Save</legend>  
+      <input type="submit">
+    </fieldset>
+  </form>
+  <br><br><br>
+  <form onsubmit="load" id="load-form">
+    <fieldset>
+      <legend>Load</legend>  
+      <label>
+        Select an id:
+        <select name="id-list"></select>
+      </label><br>
+      <input type="submit">
+    </fieldset>
+  </form>
+</body>
+</html>
