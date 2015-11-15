@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="message">You are so ...</div>
+  <button onclick="clearTimeout(timer)">Shut up!</button>
+  <script>
+    var message = document.getElementById('message');  
+    var timer = setTimeout(function(){
+      message.innerHTML = 'BEAUTIFUL!';
+    }, 5 * 1000);
+  </script>
+</body>
+</html>

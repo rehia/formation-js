@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="sandwich">Cheese, Ham</div>
+  <script>
+    var sandwich = document.getElementById('sandwich');  
+    sandwich.onclick = function(){ sandwich.innerHTML = 'Salad, Cheese'; };
+    function has_salad(){
+      return sandwich.innerHTML.indexOf('Salad') > -1;
+    }
+    var check = true;
+    var interval = setInterval(function(){
+      if(has_salad()){
+        console.log('YEAH, Salad inside');
+      }else{
+        console.log('no salad');
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
