@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chrono</title>
+  <link rel="stylesheet" href="chrono.css">
+  <script src="chrono.js"></script>
+</head>
+<body>
+  <div id="1m-chrono" class="chrono">
+    <div class="timer">0s</div>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar" style="width: 10%"></div>
+    </div>
+    <button class="start">Go for 1 min!</button>
+    <button class="stop">Stop</button>
+  </div>
+  <script>
+    new Chrono(60 * 1000, document.getElementById('1m-chrono'), function(){
+      alert('GAME OVER');  
+    }); 
+  </script>
+</body>
+</html>
