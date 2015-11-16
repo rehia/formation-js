@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button id="ping">Send ping</button>
+  <button id="pong">Send pong</button>
+  <script>
+    var ws = new WebSocket('ws://echo.websocket.org');
+    ws.onopen = function(){ console.log('open'); }
+    ws.onmessage = function(e){ console.log('receive:', e.data); }
+    document.getElementById('ping').onclick = function(){
+      ws.send('ping');
+    }
+    document.getElementById('pong').onclick = function(){
+      ws.send('pong');
+    }
+  </script>
+</body>
+</html>

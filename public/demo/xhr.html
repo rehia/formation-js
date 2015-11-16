@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button id="load">Load !</button>
+  <script>
+    document.getElementById('load').onclick = function(){
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(e){
+        console.log(xhr.readyState); //=> 1,2,3,4
+      }
+      xhr.open('GET', './xhr.html');
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
