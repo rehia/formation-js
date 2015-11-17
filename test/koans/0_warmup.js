@@ -34,7 +34,7 @@ describe('Koans warm-up', function () {
     var func = 1;
 
     assert.isFunction(func, "'it' is a test, 'describe' is a test suite. With chai, you can assert with assert, should or expect");
-    expect(func()).to.be.an.instanceOf(Number);
+    expect(typeof func()).to.equal('number');
     func().should.equal(1);
   });
 

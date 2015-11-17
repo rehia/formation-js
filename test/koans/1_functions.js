@@ -93,8 +93,8 @@ describe('JS Functions', function () {
     }
     hash.cache = {};
 
-    assert.equal(___, hash("hello, world!"), 'the method executes itself');
-    assert.equal('1f09d30', hash.cache["hello, world!"], 'and caches the results using own property');
+    assert.equal(___, hash("hello"), 'the method executes itself');
+    assert.equal('1f09d30', hash.cache.hello, 'and caches the results using own property');
   });
 
   afterEach(function () {
