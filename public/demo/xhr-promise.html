@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <script>
+    function load(url){
+      return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest(); 
+        xhr.onreadystatechange = function() {
+          if(xhr.readyState === 4){
+            if(xhr.status === 200) {
+              resolve(xhr);
+            }else{
+              reject(xhr);
+            }
+          }
+        }
+        xhr.open('GET', url);
+        xhr.send();
+      });
+    }
+
+    load('./xhr-promise.html').then(function(xhr){
+      console.log('loaded !');
+    }, function(xhr){
+      console.log('error', xhr.status);  
+    });
+  
+    load('./nimportequoi').then(function(xhr){
+      console.log('loaded !');
+    }, function(xhr){
+      console.log('error', xhr.status);  
+    });
+  </script>
+</body>
+</html>
