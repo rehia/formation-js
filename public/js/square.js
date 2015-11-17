@@ -1,24 +1,25 @@
 /* global popup */
 function Square(content) {
-  this.domElement = document.createElement('div');
-  this.domElement.className = 'square';
-  this.domElement.style.width = this.SIZE + 'px';
-  this.domElement.style.height = this.SIZE + 'px';
-  this.domElement.style.background = 'url(./img/ground.png)';
-  this.domElement.style.position = 'relative';
+  this.$domElement = $('<div>');
+  this.$domElement.addClass('square');
+  this.$domElement.css('width', this.SIZE);
+  this.$domElement.css('height', this.SIZE);
+  this.$domElement.css('background', 'url(./img/ground.png)');
+  this.$domElement.css('position', 'relative');
+
   this.unfocus();
-  this.vegetable = null;
+  this.$vegetableElement = null;
   if (content) {
     this.attachTo(content);
   }
-  this.domElement.onclick = function() {
+  this.$domElement.on('click', function() {
     popup.close();
-    if (!this.vegetable) {
+    if (!this.$vegetableElement) {
       popup.openOn(this);
     }
-  }.bind(this);
+  }.bind(this));
 
-  this.domElement.addEventListener('vegetableReady', function(){
+  this.$domElement.on('vegetableReady', function(){
     this.clear();
   }.bind(this));
 }
@@ -26,37 +27,39 @@ function Square(content) {
 Square.prototype.SIZE = 70;
 
 Square.prototype.attachTo = function(element) {
-  element.appendChild(this.domElement);
+  this.$domElement.appendTo(element);
 };
 
 Square.prototype.setPosition = function(x, y) {
-  this.domElement.style.position = 'absolute';
-  this.domElement.style.top = (this.SIZE * x) + 'px';
-  this.domElement.style.left = (this.SIZE * y) + 'px';
+  this.$domElement.css('position', 'absolute');
+  this.$domElement.css('top', (this.SIZE * x));
+  this.$domElement.css('left', (this.SIZE * y));
 };
 
 Square.prototype.put = function(vegetable) {
-  this.append(vegetable.domElement);
   this.vegetable = vegetable;
-  vegetable.domElement.style.left = ((this.SIZE - vegetable.WIDTH) / 2) + 'px';
-  vegetable.domElement.style.bottom = ((this.SIZE - vegetable.HEIGHT) / 2) + 'px';
+  this.$vegetableElement = $(vegetable.domElement);
+  this.append(this.$vegetableElement);
+  this.$vegetableElement.css('left', ((this.SIZE - vegetable.WIDTH) / 2));
+  this.$vegetableElement.css('bottom', ((this.SIZE - vegetable.HEIGHT) / 2));
 };
 
 Square.prototype.append = function (element) {
-  this.domElement.appendChild(element);
+  this.$domElement.append(element);
 };
 
 Square.prototype.clear = function() {
-  this.vegetable = null;  
-  this.domElement.innerHTML = '';
+  this.vegetable = null;
+  this.$vegetableElement = null;
+  this.$domElement.empty();
 };
 
 Square.prototype.focus = function() {
-  this.domElement.style.zIndex = 2;
-  this.domElement.style.outline = '2px solid yellow';
+  this.$domElement.css('z-index', 2);
+  this.$domElement.css('outline', '2px solid yellow');
 };
 
 Square.prototype.unfocus = function() {
-  this.domElement.style.zIndex = 1;
-  this.domElement.style.outline = '0px solid yellow';
+  this.$domElement.css('z-index', 1);
+  this.$domElement.css('outline', '0px solid yellow');
 };
