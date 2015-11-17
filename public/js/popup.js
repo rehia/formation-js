@@ -31,7 +31,7 @@ var popup = (function() {
 
   function openOn(square) {
     element.style.display = 'block';
-    square.domElement.appendChild(element);
+    square.append(element);
     square.focus();
     currentSquare = square;
   }

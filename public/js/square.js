@@ -36,10 +36,14 @@ Square.prototype.setPosition = function(x, y) {
 };
 
 Square.prototype.put = function(vegetable) {
-  this.domElement.appendChild(vegetable.domElement);
+  this.append(vegetable.domElement);
   this.vegetable = vegetable;
   vegetable.domElement.style.left = ((this.SIZE - vegetable.WIDTH) / 2) + 'px';
   vegetable.domElement.style.bottom = ((this.SIZE - vegetable.HEIGHT) / 2) + 'px';
+};
+
+Square.prototype.append = function (element) {
+  this.domElement.appendChild(element);
 };
 
 Square.prototype.clear = function() {
