@@ -1,25 +1,19 @@
 var HOST = 'http://localhost:8082/';
 
 function saveToServer(data, id) {
-  var string = JSON.stringify({
-    state: data
-  });
-
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log('id is:' + xhr.responseText);
-    }
-  };
-
+  var string = JSON.stringify({ state: data });
+  var url = HOST + 'fields' + (id ? '/' + id : '');
   var method = id ? 'PUT' : 'POST';
-  var url = HOST + 'fields';
-  if (id) {
-    url += '/' + id;
-  }
-  xhr.open(method, url, true);
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(string);
+
+  $.ajax({
+    url: url,
+    type: method,
+    data: string,
+    dataType: 'json',
+    contentType:"application/json; charset=utf-8"
+  }).done(function (id) {
+    console.log('id is:' + id);
+  });
 }
 
 function loadFromServer(id, callback){
@@ -27,7 +21,6 @@ function loadFromServer(id, callback){
   $.getJSON(url)
     .done(callback);
 }
-
 
 window.saveToServer = saveToServer;
 window.loadFromServer = loadFromServer;
