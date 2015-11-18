@@ -35,19 +35,19 @@ Grid.prototype.attachTo = function(element) {
 Grid.prototype.populate = function(data) {
   Object.keys(data).forEach(function(key) {
     var item = data[key];
-    if (!item.type) {
-      return;
-    }
+    
     var x = parseInt(key.split('-')[0]);
     var y = parseInt(key.split('-')[1]);
     var square = this.matrix[x][y];
-    if (square.vegetable && !(square.vegetable instanceof VEGETABLE_MAP[item.type])) {
+    if (square.vegetable) {
       square.clear();
     }
     if (!square.vegetable && item.type) {
       square.put(new VEGETABLE_MAP[item.type]());
     }
-    square.vegetable.setGrowingState(item.state);
+    if (square.vegetable && item.state) {
+      square.vegetable.setGrowingState(item.state);
+    }
   }.bind(this));
 };
 
