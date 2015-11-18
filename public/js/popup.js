@@ -6,32 +6,32 @@ var VEGETABLES = [Salad, Corn, Carrot];
 var popup = (function() {
 
   var currentSquare = null;
-  var element = document.createElement('div');
-  element.className = 'popup';
+  var $element = $('<div>');
+  $element.addClass('popup');
 
   VEGETABLES.forEach(function(Vegetable) {
-    var img = new Image();
-    img.src = '/img/' + Vegetable.prototype.TYPE + '.png';
-    element.appendChild(img);
-    img.onclick = function() {
+    var $img = $('<img>');
+    $img.attr('src', '/img/' + Vegetable.prototype.TYPE + '.png');
+    $element.append($img);
+    $img.on('click', function() {
       if (currentSquare) {
         currentSquare.put(new Vegetable());
       }
-    };
+    });
   });
 
-  var closeButton = document.createElement('span');
-  closeButton.className = 'close';
-  closeButton.appendChild(document.createTextNode('x'));
-  closeButton.onclick = function(e){
+  var $closeButton = $('<span>');
+  $closeButton.addClass('close');
+  $closeButton.append(document.createTextNode('x'));
+  $closeButton.on('click', function(e){
     e.stopPropagation();
     close();
-  };
-  element.appendChild(closeButton);
+  });
+  $element.append($closeButton);
 
   function openOn(square) {
-    element.style.display = 'block';
-    square.append(element);
+    $element.show();
+    square.append($element[0]);
     square.focus();
     currentSquare = square;
   }
@@ -41,7 +41,7 @@ var popup = (function() {
       currentSquare.unfocus();
       currentSquare = null;
     }
-    element.style.display = 'none';
+    $element.hide();
   }
 
   return {
