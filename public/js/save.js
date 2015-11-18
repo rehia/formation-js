@@ -23,16 +23,9 @@ function saveToServer(data, id) {
 }
 
 function loadFromServer(id, callback){
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      callback(JSON.parse(xhr.responseText));
-    }
-  };
-
   var url = HOST + 'fields/' + id;
-  xhr.open('GET', url, true);
-  xhr.send();
+  $.getJSON(url)
+    .done(callback);
 }
 
 
