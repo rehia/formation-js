@@ -43,8 +43,8 @@ describe('JS IIFE and module pattern', function () {
     for (var d = 0; d < 3; d++ ) {
       (function (d) {
         setTimeout(function(){
+          assert.equal(d, ___, "Check the value of d.");
           count++;
-          assert( d == ___, "Check the value of d." );
           if (count === 3) { done(); }
         }, 100);
       })(d);
@@ -89,7 +89,7 @@ describe('JS IIFE and module pattern', function () {
     })();
 
     var calculator = new Calculator(4);
-    assert.equal(calculator.add(2), ___, 'the created object method has still a closure over the iife state')
-    assert.equal(calculator.a, ___, 'the constructor is used ')
+    assert.equal(calculator.add(2), ___, 'the created object method has still a closure over the iife state');
+    assert.equal(calculator.a, ___, 'the constructor is used');
   });
 });
