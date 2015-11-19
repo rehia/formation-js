@@ -43,8 +43,8 @@ describe('JS IIFE and module pattern', function () {
     for (var d = 0; d < 3; d++ ) {
       (function (d) {
         setTimeout(function(){
-          assert.equal(d, ___, "Check the value of d.");
           count++;
+          assert.equal(d, ___, "Check the value of d.");
           if (count === 3) { done(); }
         }, 100);
       })(d);
