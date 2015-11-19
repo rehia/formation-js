@@ -10,13 +10,15 @@ var ___ = 'probably wrong answer';
 describe('JS IIFE and module pattern', function () {
 
   it('iife is a good way to hide things in their proper scope', function () {
-    var num = 3;
+    (function () {
+      var num = 3;
 
-    var calculator = {
-      add: function (value) {
-        return num + value;
-      }
-    };
+      var calculator = {
+        add: function (value) {
+          return num + value;
+        }
+      };
+    })();
 
     assert.equal(typeof num, "undefined", 'num should not be visible in outer scope');
     assert.equal(typeof calculator, "undefined", 'nor calculator');
@@ -30,11 +32,11 @@ describe('JS IIFE and module pattern', function () {
         }
       };
 
-      assert.equal(calculator.add(10), ___, 'injected value is of course visible inside the iife');
+      assert.equal(calculator.add(10), 13, 'injected value is of course visible inside the iife');
     })(3);
 
-    assert.equal(typeof num, ___, 'num should still not be visible in outer scope');
-    assert.equal(typeof calculator, ___, 'nor calculator');
+    assert.equal(typeof num, 'undefined', 'num should still not be visible in outer scope');
+    assert.equal(typeof calculator, 'undefined', 'nor calculator');
   });
 
   it('loop closure confusion fixed', function (done) {
@@ -43,8 +45,8 @@ describe('JS IIFE and module pattern', function () {
     for (var d = 0; d < 3; d++ ) {
       (function (d) {
         setTimeout(function(){
+          assert.equal(d, count, "Check the value of d.");
           count++;
-          assert.equal(d, ___, "Check the value of d.");
           if (count === 3) { done(); }
         }, 100);
       })(d);
@@ -57,10 +59,10 @@ describe('JS IIFE and module pattern', function () {
         return num + value;
       }
 
-      return ___;
+      return add;
     })(3);
 
-    assert.equal(add(5), ___, 'the returned function is then the public part of the module, like jquery $()');
+    assert.equal(add(5), 8, 'the returned function is then the public part of the module, like jquery $()');
   });
 
   it('a module can also return an object, but must have a reference to a closure, to still be the module pattern', function () {
@@ -69,10 +71,10 @@ describe('JS IIFE and module pattern', function () {
         return num + value;
       }
 
-      return { add: ___ };
+      return { add: add };
     })(7);
 
-    assert.equal(calculator.add(6), ___, 'the returned object is then the public part of the module');
+    assert.equal(calculator.add(6), 13, 'the returned object is then the public part of the module');
   });
 
   it('if a module can return a function, that function can be used as a constructor', function () {
@@ -89,7 +91,7 @@ describe('JS IIFE and module pattern', function () {
     })();
 
     var calculator = new Calculator(4);
-    assert.equal(calculator.add(2), ___, 'the created object method has still a closure over the iife state');
-    assert.equal(calculator.a, ___, 'the constructor is used');
+    assert.equal(calculator.add(2), 12, 'the created object method has still a closure over the iife state');
+    assert.equal(calculator.a, 10, 'the constructor is used');
   });
 });
