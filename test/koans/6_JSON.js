@@ -100,7 +100,7 @@ describe('JSON behavior', function () {
         // what can we do here ?
       });
 
-      assert.equal(json, '{"b":2,"c":"tf"}', 'the numeric value has been replaced while being serialized');
+      assert.equal(json, '{"b":3,"c":"tf"}', 'the numeric value has been replaced while being serialized');
     });
 
     it('toJSON custom method', function () {
