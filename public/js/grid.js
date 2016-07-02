@@ -1,12 +1,14 @@
 /* global Square, Salad, Carrot, Corn */
 function Grid(width, height, content) {
-  this.domElement = document.createElement('div');
-  this.domElement.className = 'grid';
+  this.$el = $(document.createElement('div'));
+  this.$el.addClass('grid');
   this.width = width;
   this.height = height;
-  this.domElement.style.width = (Square.prototype.SIZE * this.width) + 'px';
-  this.domElement.style.height = (Square.prototype.SIZE * this.height) + 'px';
-  this.domElement.style.position = 'relative';
+  this.$el.css({
+    width: Square.prototype.SIZE * this.width,
+    height: Square.prototype.SIZE * this.height,
+    position: 'relative'
+  });
 
   if (content) {
     this.attachTo(content);
@@ -15,7 +17,7 @@ function Grid(width, height, content) {
   for (var x = 0; x < this.width; x++) {
     this.matrix[x] = [];
     for (var y = 0; y < this.width; y++) {
-      var square = new Square(this.domElement);
+      var square = new Square(this.$el);
       square.setPosition(x, y);
       this.matrix[x][y] = square;
     }
@@ -28,14 +30,14 @@ var VEGETABLE_MAP = {
   'corn': Corn
 };
 
-Grid.prototype.attachTo = function(element) {
-  element.appendChild(this.domElement);
+Grid.prototype.attachTo = function($element) {
+  $element.append(this.$el);
 };
 
 Grid.prototype.populate = function(data) {
   Object.keys(data).forEach(function(key) {
     var item = data[key];
-    
+
     var x = parseInt(key.split('-')[0]);
     var y = parseInt(key.split('-')[1]);
     var square = this.matrix[x][y];

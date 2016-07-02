@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Formation JS</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/jquery-3.0.0.js "></script>
   <script src="js/plant.js"></script>
   <script src="js/carrot.js"></script>
   <script src="js/salad.js"></script>
@@ -18,7 +19,7 @@
 
   <div id="populate"></div>
   <script>
-    var popgrid = new Grid(4, 4, document.getElementById('populate')); 
+    var popgrid = new Grid(4, 4, $('#populate')); 
     popgrid.populate({
       '0-0': {
         type: 'carrot',
@@ -35,25 +36,25 @@
 
   <div id="one-square"></div>
   <script>
-    var first_square = new Square(document.getElementById('one-square')); 
+    var first_square = new Square($('#one-square')); 
   </script>
 
   <hr>
   
   <div id="grid"></div>
   <script>
-    var grid = new Grid(4, 4, document.getElementById('grid')); 
+    var grid = new Grid(4, 4, $('#grid')); 
   </script>
 
   <hr>
 
   <div id="vegetables"></div>
   <script>
-    var field1 = new Square(document.getElementById('vegetables')); 
+    var field1 = new Square($('#vegetables')); 
     field1.put(new Carrot());
-    var field2 = new Square(document.getElementById('vegetables')); 
+    var field2 = new Square($('#vegetables')); 
     field2.put(new Salad());
-    var field3 = new Square(document.getElementById('vegetables')); 
+    var field3 = new Square($('#vegetables')); 
     field3.put(new Corn());
   </script>
 
@@ -61,7 +62,7 @@
   <h2>Stock</h2>
   <div id="stock" class="stock"></div>
   <script>
-    var stock = new Stock(document.getElementById('stock')); 
+    var stock = new Stock($('#stock')); 
     stock.add(new Carrot());
     stock.add(new Salad());
     stock.add(new Carrot());

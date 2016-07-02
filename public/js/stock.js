@@ -1,17 +1,17 @@
-function Stock(element) {
-  this.domElement = element;
+function Stock($element) {
+  this.$el = $element;
   this.count = {};
-  this.tableElement = document.createElement('table');
-  this.tableElement.className = 'stock';
-  this.domElement.appendChild(this.tableElement);
-  this.tbodyElement = document.createElement('tbody');
-  this.tableElement.appendChild(this.tbodyElement);
+  this.$table = $(document.createElement('table'));
+  this.$table.addClass('stock');
+  this.$el.append(this.$table);
+  this.$tbody = $(document.createElement('tbody'));
+  this.$table.append(this.$tbody);
   this.render();
 }
 
 Stock.prototype.catchVegetable = function(grid) {
-  grid.domElement.addEventListener('vegetableReady', function(e) {
-    this.add(e.detail.vegetable);
+  grid.$el.on('vegetableReady', function(e, data) {
+    this.add(data.vegetable);
   }.bind(this));
 };
 
@@ -29,22 +29,14 @@ Stock.prototype.set = function(values){
 };
 
 Stock.prototype.render = function() {
-  this.tbodyElement.innerHTML = '';
   var types = Object.keys(this.count);
+  var html = '';
   types.forEach(function(type) {
-    var tr = document.createElement('tr');
-    var th = document.createElement('th');
-    var td = document.createElement('td');
-    var img = new Image();
-    img.src = '/img/' + type + '.png';
-    var value = document.createTextNode('x' + this.count[type].toString());
-    th.appendChild(img);
-    td.appendChild(value);
-
-    tr.appendChild(th);
-    tr.appendChild(td);
-
-    this.tbodyElement.appendChild(tr);
+    html += '<tr>';
+    html += '<th><img src="/img/'+type+'.png" /></th>'; 
+    html += '<td>x '+this.count[type]+ '</td>'; 
+    html += '</tr>'; 
 
   }.bind(this));
+  this.$tbody.html(html);
 };
