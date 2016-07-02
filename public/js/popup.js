@@ -1,4 +1,4 @@
-/* global Corn, Carrot, Salad */
+/* global $, Corn, Carrot, Salad */
 
 var VEGETABLES = [Salad, Corn, Carrot];
 
