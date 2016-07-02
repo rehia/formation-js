@@ -17,7 +17,7 @@ describe('JS Closures', function () {
       return num + myNum;
     }
 
-    assert.equal(add(5), ___, "Add two numbers together, one from a closure.");
+    assert.equal(add(5), 15, "Add two numbers together, one from a closure.");
   });
 
   it('lexical scope state can change before closure is used', function () {
@@ -28,7 +28,7 @@ describe('JS Closures', function () {
     }
 
     num = 15;
-    assert.equal(add(5), 16, "Add two numbers together, even after change");
+    assert.equal(add(5), 20, "Add two numbers together, even after change");
   });
 
   it('closures are usually used as callbacks', function (done) {
@@ -40,7 +40,7 @@ describe('JS Closures', function () {
     }
 
     emitter.on('add', function () {
-      assert.equal(add(7), ___, 'Call closure as a callback.');
+      assert.equal(add(7), 11, 'Call closure as a callback.');
       done();
     });
 
@@ -56,18 +56,18 @@ describe('JS Closures', function () {
       }
     };
 
-    assert.equal(calculator.add(5), ___, 'closure as object properties also remembers its lexical scope');
+    assert.equal(calculator.add(5), 16, 'closure as object properties also remembers its lexical scope');
     assert.isUndefined(calculator.otherNum, 'local scoped variable are still invisible to outer scopes');
   });
 
   it('that one is a bit more tricky', function () {
     var a = 5;
     function runMe(a){
-      assert.equal(a, ___, "Check the value of a.");
+      assert.equal(a, 6, "Check the value of a.");
 
       function innerRun(){
-        assert.equal(b, ___, "Check the value of b.");
-        assert.equal(c, ___, "Check the value of c.");
+        assert.equal(b, 7, "Check the value of b.");
+        assert.equal(c, undefined, "Check the value of c.");
       }
 
       var b = 7;
@@ -83,7 +83,7 @@ describe('JS Closures', function () {
     for (var d = 0; d < 3; d++ ) {
       setTimeout(function(){
         count++;
-        assert.equal(d, ___, "Check the value of d.");
+        assert.equal(d, 3, "Check the value of d.");
         if (count === 3) { done(); }
       }, 100);
     }

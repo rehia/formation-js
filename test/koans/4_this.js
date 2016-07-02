@@ -12,11 +12,11 @@ module.___ = ___; // don't change that line :)
 
 function strictModeDefaultBinding() {
   'use strict';
-  return ___;
+  return this;
 }
 
 function nonStrictDefaultBinding() {
-  'use strict'; // maybe something to do with this line... haha ! "this" line... :D
+  //'use strict'; // maybe something to do with this line... haha ! "this" line... :D
   return this;
 }
 
@@ -35,7 +35,7 @@ describe('JS this context behavior', function () {
     });
 
     it('be careful in node, at the root is not the global, but the module', function () {
-      assert.isUndefined(module.___, 'beware of some confusion in Node, where the root element is the module, and not the global');
+      assert.isUndefined(module.setTimeout, 'beware of some confusion in Node, where the root element is the module, and not the global');
     });
 
     it('implicit binding rule using a object literal', function () {
@@ -48,7 +48,7 @@ describe('JS this context behavior', function () {
         add: add
       };
 
-      assert.equal(calculator.add(4), ___, 'when the function is bound to an object, the context is the object itself');
+      assert.equal(calculator.add(4), 7, 'when the function is bound to an object, the context is the object itself');
     });
 
     it('implicit binding rule does not apply so easily when used as callbacks', function (done) {
@@ -64,7 +64,12 @@ describe('JS this context behavior', function () {
         }
       };
 
-      tryIt(calculator.add); // call calculator.add differently. Try 2 approaches : hard binding or closure
+      // with a closure
+      //tryIt(function (b) {
+      //  calculator.add(b);
+      //});
+
+      tryIt(calculator.add.bind(calculator)); // with hard binding
     });
 
     it('explicit binding rule with call and apply', function () {
@@ -75,14 +80,14 @@ describe('JS this context behavior', function () {
       var calculator1 = { a: 4 };
       var calculator2 = { a: 7 };
 
-      assert.equal(add.___(calculator1, 5), 9, 'you can use Function.prototype.call to explicitly bind a context to the function');
-      assert.equal(add.___(calculator2, [6]), 13, 'you can also use Function.prototype.apply, but apply takes an array as 2nd argument');
+      assert.equal(add.call(calculator1, 5), 9, 'you can use Function.prototype.call to explicitly bind a context to the function');
+      assert.equal(add.apply(calculator2, [6]), 13, 'you can also use Function.prototype.apply, but apply takes an array as 2nd argument');
     });
 
     it('looping with a callback', function (done) {
       function loop(array, fn){
         for (var i = 0; i < array.length; i++) {
-          // call callback here, but don't forget the context !
+          fn.call(array, array[i]);
         }
       }
       var num = 3;
@@ -101,10 +106,10 @@ describe('JS this context behavior', function () {
     }
 
     var ninjaA = Ninja();
-    assert.isUndefined(___, "Is undefined, not an instance of Ninja." );
+    assert.isUndefined(ninjaA, "Is undefined, not an instance of Ninja." );
 
     var ninjaB = new Ninja();
-    assert.equal(ninjaB.name, ___, "Property exists on the ninja instance." );
+    assert.equal(ninjaB.name, 'Ninja', "Property exists on the ninja instance." );
   });
 
   describe('back in strict mode', function () {
@@ -116,7 +121,7 @@ describe('JS this context behavior', function () {
 
         // Should return true
         this.swingSword = function(){
-          this.___ = !this.swung;
+          this.swung = !this.swung;
           return this.swung;
         };
       }
@@ -126,13 +131,17 @@ describe('JS this context behavior', function () {
       assert.isTrue(ninja.swung, "The ninja has swung the sword." );
 
       var ninjaB = new Ninja();
-      assert.isFalse(ninjaB.___, "Make sure that the ninja has not swung his sword." );
+      assert.isFalse(ninjaB.swung, "Make sure that the ninja has not swung his sword." );
     });
 
     it('add a method that gives a name to the ninja', function () {
       function Ninja(name){
         // Implement!
-        this.changeName = ___;
+        this.changeName = function (name) {
+          this.name = name;
+        };
+
+        this.changeName(name);
       }
 
       var ninja = new Ninja("John");
@@ -147,24 +156,24 @@ describe('JS this context behavior', function () {
         this.hey = 'hey, ' + (this.who || 'you');
       }
 
-      assert.Throw(sayHey, ___, null, 'in strict mode, so this is null because of default binding rule');
+      assert.Throw(sayHey, Error, null, 'in strict mode, so this is null because of default binding rule');
 
       var jude = { who: 'Jude', sayHey: sayHey };
       jude.sayHey();
-      assert.equal(jude.hey, 'hey, ' + ___, 'implicit binding goes over default binding');
+      assert.equal(jude.hey, 'hey, ' + 'Jude', 'implicit binding goes over default binding');
 
       var joe = { who: 'Joe' };
       jude.sayHey.call(joe);
-      assert.equal(joe.hey, 'hey, ' + ___, 'explicit binding goes over implicit binding');
+      assert.equal(joe.hey, 'hey, ' + 'Joe', 'explicit binding goes over implicit binding');
 
       var ya = { who: 'ya!' };
       var heyYa = sayHey.bind(ya);
       heyYa.call(jude);
-      assert.equal(ya.hey, 'hey, ' + ___, 'hard binding goes over explicit binding');
+      assert.equal(ya.hey, 'hey, ' + 'ya!', 'hard binding goes over explicit binding');
 
-      assert.equal(new sayHey().hey, 'hey, ' + ___, 'new creates a new object');
-      assert.equal(new jude.sayHey().hey, 'hey, ' + ___, 'new goes over implicit binding');
-      assert.equal(new heyYa().hey, 'hey, ' + ___, 'new goes over hard/explicit binding, but you don’t want to write this!');
+      assert.equal(new sayHey().hey, 'hey, ' + 'you', 'new creates a new object');
+      assert.equal(new jude.sayHey().hey, 'hey, ' + 'you', 'new goes over implicit binding');
+      assert.equal(new heyYa().hey, 'hey, ' + 'you', 'new goes over hard/explicit binding, but you don’t want to write this!');
     });
   });
 });
