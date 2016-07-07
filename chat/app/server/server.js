@@ -20,11 +20,13 @@ io.on('connection', socket => {
   socket.on('check in', message => {
     const name = JSON.parse(message).name;
     users[name] = socket;
+    io.emit('new user', name);
   });
 
   socket.on('check out', message => {
     const name = JSON.parse(message).name;
     delete users[name];
+    io.emit('user left', name);
   });
 });
 

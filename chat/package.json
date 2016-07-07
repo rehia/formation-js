@@ -5,14 +5,22 @@
   "main": "app/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/watchify app/front/main.js -o public/main.js -v"
+    "dev": "./node_modules/.bin/watchify app/front/main.js -o public/main.js -v",
+    "server": "node app/server/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^3.0.0"
+    "express": "^4.14.0",
+    "jquery": "^3.0.0",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0",
     "watchify": "^3.7.0"
   }
 }
